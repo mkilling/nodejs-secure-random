@@ -25,10 +25,10 @@ function _parseArgs(arg_array) {
  * for an explaination of the modulo issue.
  */
 function _mapToRange(min, max, randUInt) {
-   var result_range = (max + 1) - min,
-       factor = result_range / MaxUInt;
+    var result_range = (max + 1) - min,
+        factor = result_range / MaxUInt;
 
-   return ((randUInt * factor) + min) >> 0; // bitshifting by zero equates to Math.floor, albeit faster.
+    return ((randUInt * factor) + min) >> 0; // bitshifting by zero equates to Math.floor, albeit faster.
 }
 
 function convertBufferToInt(args, buf) {
@@ -38,8 +38,7 @@ function convertBufferToInt(args, buf) {
     if (args.min !== undefined) {
         assert(args.max !== undefined && args.min < args.max);
         rand_int = _mapToRange(args.min, args.max, unsigned_int);
-    }
-    else {
+    } else {
         rand_int = unsigned_int;
     }
 
@@ -55,7 +54,6 @@ function asyncGetRandomInt(args) {
             args.cb(null, convertBufferToInt(args, bytes_slow_buf));
         }
     });
-
 }
 
 function syncGetRandomInt(args) {
@@ -67,7 +65,7 @@ function syncGetRandomInt(args) {
      Returns the random int returned by nodes crypto library
 */
 exports.getRandomInt = function(min, max, callback) {
-   var args = _parseArgs(arguments), unsigned_int, rand_int;
+    var args = _parseArgs(arguments), unsigned_int, rand_int;
     if (typeof args.cb === 'function') {
         asyncGetRandomInt(args);
     } else {
